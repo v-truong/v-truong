@@ -5,6 +5,8 @@
  */
 package Session;
 
+import entity.Company;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,13 +15,13 @@ import javax.ejb.Local;
  */
 @Local
 public interface companySessionBeanLocal {
-    List<Com> findAll();
+    List<Company> findAll();
     
-    void insert(Book book);
+    void insert(Company company);
     
     void delete(String bookCode);
     
-    void update(Book book);
+    void update(Company book);
     
-    Book find(String bookCode);
+    Company find(String companyCode);
 }

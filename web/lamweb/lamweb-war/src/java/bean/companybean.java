@@ -5,10 +5,49 @@
  */
 package bean;
 
+import Session.companySessionBeanLocal;
+import entity.Company;
+
+import java.io.Serializable;
+import javax.annotation.ManagedBean;
+import javax.ejb.EJB;
+
 /**
  *
  * @author MSI BRAVO 15
  */
-public class companybean {
+@ManagedBean(name = "companybean")
+public class companybean  implements Serializable {
+     @EJB
+    private companySessionBeanLocal bookSessionBean;
+    private Company book;
     
+    public companybean() {
+        this.book = new Book();
+    }
+    
+    public List<Book> getBookList() {
+        return bookSessionBean.findAll();
+    }
+    
+    public void delete(String bookCode) {
+        bookSessionBean.delete(bookCode);
+    }
+    
+    public String edit(String bookCode) {
+        book = bookSessionBean.find(bookCode);
+        return "editbook";
+    }
+    
+    public Book getBook() {
+        return book;
+    }
+    
+    public void insert() {
+        bookSessionBean.insert(book);
+    }
+    
+    public void update() {
+        bookSessionBean.update(book);
+    }
 }

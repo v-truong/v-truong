@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Book List</title>
+    </h:head>
+    <h:body>
+        Book List
+        
+        <h:dataTable border="1" value="#{bookBean.bookList}" var="item">
+            <h:column>
+                <f:facet name="header">Book Name</f:facet>
+                #{item.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nick Name</f:facet>
+                #{item.nickname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">NXB</f:facet>
+                #{item.nxb}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Price</f:facet>
+                #{item.price}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <h:commandButton action="#{bookBean.delete(item.bookcode)}" value="Delete"></h:commandButton>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Edit</f:facet>
+                <h:form>
+                    <h:commandButton action="#{bookBean.edit(item.bookcode)}" value="Edit"></h:commandButton>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <a href="addbook.xhtml" target="_blank">Add Book</a>
+    </h:body>
 </html>
+
